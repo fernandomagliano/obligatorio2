@@ -3,13 +3,15 @@ export class Alimento
     #id;
     #nombre;
     #descripcion;
+    #fechaSubida;
     #cantCalorias;
     
-       constructor(id, nombre, descripcion, cantCalorias) 
+       constructor(id, nombre, descripcion, fechaSubida, cantCalorias) 
         {
         this.#id = id;
         this.#nombre = nombre;
         this.#descripcion = descripcion;
+        this.#fechaSubida = fechaSubida;
         this.#cantCalorias = cantCalorias;
         }
     
@@ -36,7 +38,14 @@ export class Alimento
       set descripcion(value) {
         this.#descripcion = value;
       }
-  
+    
+      // Getter y Setter para fechaSubida
+      get fechaSubida() {
+        return this.#fechaSubida;
+      }
+      set fechaSubida(value) {
+        this.#fechaSubida = value;
+      }
     
       // Getter y Setter para cantCalorias
       get cantCalorias() {
@@ -48,7 +57,7 @@ export class Alimento
 
 
       toString() {
-        return `Nombre: ${this.#nombre}\nDescripción: ${this.#descripcion}\nCantidad de calorías: ${this.#cantCalorias}`;
+        return `Nombre: ${this.#nombre}\nDescripción: ${this.#descripcion}\nFecha de subida: ${this.#fechaSubida}\nCantidad de calorías: ${this.#cantCalorias}`;
       }
 
 }

@@ -1,65 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de Usuarios</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <title>Página del Comedor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>proyecto2023</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="styles.css" rel="stylesheet">
+ 
 </head>
-
 <body>
-  <div class="container inicio-container">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Funcionarios del Comedor</h5>
-        <p class="card-text">Accede a la plataforma como funcionario del comedor para gestionar los menús y alimentos.</p>
-        <a href="#" class="btn btn-primary btn-block btn-funcionario">Ingresar</a>
-      </div>
-    </div>
+  <div id="index">
+    
+    <h1>Bienvenido al Comedor</h1>
+    <img id="comedor-image" src="./img/fondo.jpg" alt="Foto del Comedor">
 
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Administradores</h5>
-        <p class="card-text">Inicia sesión como administrador para gestionar usuarios y configuraciones del sistema.</p>
-        <a href="#" class="btn btn-primary btn-block">Ingresar</a>
-      </div>
+    <div id="ingreso">
+      <button class="button" onclick="mostrarFormulario('administrador')">Ingreso Administrador</button>
+      <button class="button" onclick="mostrarFormulario('comedor')">Ingreso Comedor</button>
+      <button class="button" onclick="mostrarFormulario('usuario')">Ingreso Usuario</button>
     </div>
+  </div>
 
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Usuarios</h5>
-        <p class="card-text">Explora el menú del día y encuentra información sobre los alimentos disponibles.</p>
-        <a href="#" class="btn btn-primary btn-block">Ingresar</a>
+  <!--____________________________________________________________________-->
+  <div id="formulario-administrador">
+    <h2>Ingreso Administrador</h2>
+    <button class="button" onclick="goBack()">Volver atrás</button>
+  </div>
+ 
+ 
+  <div id="formulario-usuario">
+    <h2>Ingreso Usuario</h2>
+    <button class="button" onclick="goBack()">Volver atrás</button>
+  </div>
+
+  
+  <!--_____________________________________________________________________-->
+ 
+ 
+  <div id="formulario-comedor">
+    <div>
+      <h1>COMEDOR</h1>
+    </div> 
+    <nav class="navbar navbar-expand d-flex justify-content-center">
+      <div class="nav nav-pills" id="nav-tab" >
+        <button class="button" onclick="mostrarFormulario('ingresarMenu')">INGRESAR MENUS</button>
+        <button class="button" onclick="mostrarFormulario('modificaciones')">MODIFICAR MENUS</button>
+        <button class="button" onclick="mostrarFormulario('ingresarCompras')">INGRESAR COMPRAS</button>
+      </div>
+    </nav>
+
+    <!--__________________________________________________________________________________________-->
+    <div id="formulario-ingresarCompras">
+      <h2>Ingreso Compras</h2>
+      <button class="button" onclick="goBack()">Volver atrás</button>
+    </div>
+  
+    <div id="formulario-ingresarMenu">
+      <h2>Ingreso Menus</h2>
+      <button class="button" onclick="goBack()">Volver atrás</button>
+    </div>
+    <!--______________________________________________________________________________________________-->
+   
+   <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-add-country" role="tabpanel" aria-labelledby="nav-add-country-tab">
+        <div class="container shadow bg-white rounded">
+          <div class="row">
+            <div class="col-sm p-0 fill">
+              <img id="comedor-image" src="img/fondo.jpg" alt="Flags Image" id="imagenfondo" class="rounded-start">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container menu-container">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Menú del Comedor</h5>
-        <p class="card-text">Selecciona una opción:</p>
-        <a href="errorPage.html" class="btn btn-primary btn-block">Ingresar Menú</a>
-        <a href="#" class="btn btn-primary btn-block btn-modificar-menu">Modificar Menú</a>
-      </div>
-    </div>
-  </div>
+  <script>
+    function mostrarFormulario(tipo) {
+      var index = document.getElementById('index');
+      index.style.display = 'none';
 
-  <div class="container modificar-menu-container">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Modificar Menú</h5>
-        <p class="card-text">Selecciona qué menú deseas modificar:</p>
-        <a href="#" class="btn btn-primary btn-block">Modificar Menú Semanal</a>
-        <a href="#" class="btn btn-primary btn-block">Modificar Menú Alternativo</a>
-      </div>
-    </div>
-  </div>
+      var formularios = document.querySelectorAll('#formulario-administrador, #formulario-ingresarCompras, #formulario-ingresarMenu, #formulario-comedor, #formulario-usuario');
+      for (var i = 0; i < formularios.length; i++) {
+        formularios[i].style.display = 'none';
+      }
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="main.js"></script>
+      var formulario = document.querySelector('#formulario-' + tipo);
+      formulario.style.display = 'block';
+    }
+
+    function goBack() {
+      var index = document.getElementById('index');
+      index.style.display = 'block';
+
+      var formularios = document.querySelectorAll('#formulario-administrador, #formulario-comedor, #formulario-usuario, #formulario-ingresarCompras, #formulario-ingresarMenu');
+      for (var i = 0; i < formularios.length; i++) {
+        formularios[i].style.display = 'none';
+      }
+    }
+  </script>
 </body>
-
 </html>
